@@ -1,7 +1,6 @@
 <div class="month">
     <ul>
         <li style="text-align:center">
-
             <span style="font-size:18px">{{$data['title']}}</span>
         </li>
     </ul>
