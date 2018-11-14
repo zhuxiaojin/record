@@ -6,22 +6,23 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3>工时记录  </h3><span class="label label-success  ">{{$data['current_time']?:date('Y-m-d')}}-{{isDayOfWeek($data['current_time'])}}</span>
+                        <h3>工时记录 </h3><span class="label label-success  ">{{$current_time}}
+                            -{{isDayOfWeek($current_time)}}</span>
                         @isset($holiday->holiday)
                             @if($holiday->holiday->holiday===false)
                                 <span class="    margin-left-10">{{$holiday->holiday->name}}-补班</span>
                             @elseif ($holiday->holiday->holiday===true)
                                 <span class="   margin-left-10">法定节假日-{{$holiday->holiday->name}}</span>
                             @endif
-                            @endisset
+                        @endisset
 
                     </div>
                     <div class="panel-body">
                         {!! Form::open(['url' => route('record.store')]) !!}
                         <div class="form-group">
                             {!! Form::label('project','选择项目',['class'=>'form-label']) !!}
-                            {!! Form::text('project',old('project'),['class'=>'form-control ','readonly']) !!}
-                            {!! Form::hidden('project_id',old('project_id'),['id'=>'project_id']) !!}
+                            {!! Form::text('project',isset($project->name)?$project->name:'',['class'=>'form-control ','readonly']) !!}
+                            {!! Form::hidden('project_id',isset($project->id)?$project->id:old('project_id'),['id'=>'project_id']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::button('选择',['class'=>'btn btn-primary btn-sm ','data-toggle'=>'modal','data-target'=>'#project_list']) !!}
@@ -48,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('current_time','发布日期',['class'=>'form-label']) !!}
-                            {!! Form::date('current_time',$data['current_time']?:\Carbon\Carbon::now()->toDateString(),['class'=>'form-control']) !!}
+                            {!! Form::date('current_time',$current_time?:\Carbon\Carbon::now()->toDateString(),['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('body','工作内容',['class'=>'form-label']) !!}

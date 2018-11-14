@@ -33,7 +33,7 @@
                                                 <div class="col-md-4"><a
                                                             href="{{route('project.show',['id'=>$item['id']])}}">{{$loop->iteration}}
                                                         .{{$item->name}}</a></div>
-                                                <div class="col-md-4 text-right">{{$item->created_at->diffForHumans()}}</div>
+                                                <div class="col-md-4 text-right">{{$item->created_at->toDateString()}}</div>
                                                 <div class="col-md-4 text-right">
                                                     @if($type=='mine')
                                                         <a class="btn btn-primary btn-sm"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RecordRequest;
+use App\Models\Project;
 use App\Models\Record;
 use App\Models\Step;
 use App\Models\User;
@@ -41,8 +42,14 @@ class RecordController extends Controller
         //
         $data = $request->data;
         $steps = Step::all();
-        $holiday = getHoliday($data['current_time']);
-        return view('records.create', compact('steps', 'data', 'holiday'));
+        //计算时间
+        $current_time = isset($data['current_time']) ? $data['current_time'] : date('Y-m-d');
+        //计算项目
+        if (isset($data['project_id'])) {
+            $project = Project::findOrFail($data['project_id']);
+        }
+        $holiday = getHoliday($current_time);
+        return view('records.create', compact('steps', 'current_time', 'project', 'holiday'));
     }
 
     /**

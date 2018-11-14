@@ -54,7 +54,7 @@
                                                 <span class="label label-default">已结束</span>
                                             @endif
                                         </td>
-                                        <td><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
+                                        <td><a href="{{route('record.create',['data[project_id]'=>$value->id])}}"><span class="glyphicon glyphicon-edit"></span></a></td>
                                     </tr>
                                 @empty
                                     <tr>

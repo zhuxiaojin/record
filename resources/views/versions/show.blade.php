@@ -32,7 +32,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="margin-top-10">版本管理员：{{$version->user->name}}
-                                            -{{$version->user->duty->name}}</div>
+                                            - <span class="label label-info">{{$version->user->duty->name}}</span></div>
                                         <div class="margin-top-10">创建时间：{{$version->created_at->toDateString()}}</div>
                                         <div class="margin-top-10">上线时间：{{$version->end_time->toDateString()}}</div>
                                     </div>
